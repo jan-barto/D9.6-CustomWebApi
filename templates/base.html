@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API služba s recepty</title>
+  {{ bootstrap.load_css() }}
+  <link href="../static/style.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+      </a>
+
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{{url_for('home')}}" class="nav-link" style="color:black">Domů</a></li>
+
+      </ul>
+    </header>
+  </div>
+
+{% block content %}
+{% endblock %}
+
+<div class="container mt-5">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-body-secondary">© 2024 jan-barto</p>
+
+  </footer>
+</div>

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="p-3 rounded text-body-emphasis bg-body-secondary">
+        <div class="row">
+            <div class="col-7">
+                <h1 class="display-4 fst-italic">API služba s recepty </h1>
+                <p class="lead my-3">inspirovanými indickou kuchyní</p>
+            </div>
+            <div class="col-5">
+                <img class="img-fluid" src="/static/img.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="row col-7 mt-5">
+        <h3>API možnosti</h3>
+        <p>
+            Tato služba poskytuje recepty inspirované indickou kuchyní, vždy vegetriánské nebo veganské.
+            Můžete ji využít k získání všech receptů, náhodného receptu, nebo hledání na základě klíčového slova.
+        </p>
+        <p>
+            Pro uživatele, kteří znají přístupové heslo, je možné taky recepty přidávat, aktualizovat, nebo mazat.
+            Tyto přístupové údaje lze získat po seznámení se s provozovatelem :-).
+        </p>
+        <hr>
+        <h4>Všechny recepty (GET)</h4>
+        <h5>/all</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/all'
+
+        response = requests.get(url)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+
+        <h4>Náhodný recept (GET)</h4>
+        <h5>/random</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/random'
+
+        response = requests.get(url)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+        <h4>Vyhledat recept (GET)</h4>
+        <h5>/search?keyword=masala</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/search?keyword=masala'
+        response = requests.get(url)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+        <hr>
+        <u><h6 style="letter-spacing: 0.3em">DÁLE NUTNÁ AUTENTIKACE</h6></u>
+        <h4>Přidat recept (POST)</h4>
+        <h5>/add?key=tajneheslo</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/add?key=tajneheslo'
+
+        data = {
+            "name": "Čočka na kyselo",
+            "ingredients": "500g čočky, 1 cibule, 3 stroužky česneku,"
+                            " olej, ocet..",
+            "procedure": "Přes noc namočíme čočku,další den ji uvaříme"
+                        " do měkka (cca 2O minut), osmažíme cibulku ...",
+            "source": "rodinný recept",
+        }
+
+        response = requests.post(url=url, data=data)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+        <h4>Aktualizovat recept (PUT/PATCH)</h4>
+        <h5>/update?key=tajneheslo</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/add?key=tajneheslo'
+
+        data = {
+            "id": 1,
+            "name": "Kari jó kari",
+            "procedure": "Objednáme hotové jídlo",
+        }
+
+        response = requests.post(url=url, json=data)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+        <h4>Smazat recept (DELETE)</h4>
+        <h5>/delete?key=tajneheslo</h5>
+        <p>
+            Ukázka kódu /Python/:
+        </p>
+        <pre>
+        import requests
+
+        url = 'http://127.0.0.1:5000/delete?key=tajneheslo'
+
+        data = {
+            "id": 1
+        }
+
+        response = requests.post(url=url, json=data)
+        response.raise_for_status()
+        print(response.text)
+        </pre>
+
+    </div>
+</div>
+
+{% endblock %}
